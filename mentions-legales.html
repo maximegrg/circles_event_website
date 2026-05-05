@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — Circles 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+    rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .legal-page {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--off-white);
+    }
+
+    .legal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .legal-nav__logo {
+      height: 3rem;
+      width: auto;
+    }
+
+    .legal-nav__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: rgba(251, 249, 244, 0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .legal-nav__back:hover {
+      color: var(--off-white);
+    }
+
+    .legal-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .legal-content h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-optical-sizing: none;
+      font-variation-settings: 'opsz' 96;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 0 0 3rem;
+      line-height: 1.05;
+    }
+
+    .legal-content h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--yellow);
+    }
+
+    .legal-content p,
+    .legal-content address {
+      font-style: normal;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(251, 249, 244, 0.75);
+      margin: 0 0 0.5rem;
+    }
+
+    .legal-content a {
+      color: var(--off-white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .legal-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 3rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .legal-nav {
+        padding: 1rem 1.25rem;
+      }
+
+      .legal-content {
+        padding: 2.5rem 1.25rem 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="legal-page">
+    <nav class="legal-nav">
+      <a href="/">
+        <img src="graphics/logo_small.png" class="legal-nav__logo" alt="Circles — accueil" />
+      </a>
+      <a href="/" class="legal-nav__back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Retour au site
+      </a>
+    </nav>
+
+    <main class="legal-content">
+      <h1>Mentions légales</h1>
+
+      <h2>Éditeur du site</h2>
+      <address>
+        <strong>Maxime Georges</strong><br />
+        Particulier<br />
+        32 Route de l'Eteneuc, 56380 GUER<br />
+        Contact : <a href="mailto:contact@circles-event.eu">contact@circles-event.eu</a>
+      </address>
+
+      <hr class="legal-divider" />
+
+      <h2>Hébergement</h2>
+      <address>
+        <strong>Vercel Inc.</strong><br />
+        440 N Barranca Ave #4133<br />
+        Covina, CA 91723, États-Unis<br />
+        <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>
+      </address>
+
+      <hr class="legal-divider" />
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus présents sur ce site (textes, images, vidéos, graphismes, logo) est la propriété
+        exclusive de Circles Events, sauf mention contraire. Toute reproduction, distribution ou utilisation sans
+        autorisation écrite préalable est interdite.
+      </p>
+
+      <hr class="legal-divider" />
+
+      <h2>Données personnelles</h2>
+      <p>
+        Ce site ne collecte aucune donnée personnelle directement. Les inscriptions sont gérées via la plateforme
+        Luma (<a href="https://lu.ma" target="_blank" rel="noopener">lu.ma</a>), soumise à ses propres conditions
+        d'utilisation et politique de confidentialité.
+      </p>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès,
+        de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à
+        <a href="mailto:contact@circles-event.eu">contact@circles-event.eu</a>.
+      </p>
+
+      <hr class="legal-divider" />
+
+      <h2>Cookies</h2>
+      <p>
+        Ce site n'utilise pas de cookies de suivi ou de profilage. Aucun outil d'analyse de trafic n'est
+        actuellement actif.
+      </p>
+
+      <hr class="legal-divider" />
+
+      <p style="color: rgba(251,249,244,0.35); font-size: 0.85rem;">Dernière mise à jour : mai 2026</p>
+    </main>
+  </div>
+</body>
+
+</html>
