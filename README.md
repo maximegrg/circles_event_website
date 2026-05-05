@@ -28,7 +28,7 @@ vercel.json         config Vercel (cleanUrls, no trailingSlash)
 - Galerie stacking au scroll
 - Section infos FAQ
 - Footer avec lien billetterie et mentions légales
-- Animations d'apparition au scroll (IntersectionObserver)
+- Animations d'apparition au scroll
 
 ## Contact
 
