@@ -19,110 +19,193 @@ function shuffleArray(arr, seed) {
 }
 
 /* =============================================================================
-   Carrousels (activités + témoignages)
+   Carrousel activités — tab bar + 3-up cards
    ============================================================================= */
-function getVisibleCards() {
-  return window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
-}
+function initActivitiesCarousel() {
+  const carousel = document.querySelector('[data-carousel="activities"]');
+  if (!carousel) return;
 
-function initCarousel(name) {
-  const root = document.querySelector(`[data-carousel="${name}"]`);
-  if (!root) return;
+  const cards = Array.from(carousel.querySelectorAll('.activity-card'));
+  const N = cards.length;
+  if (N === 0) return;
 
-  const track = root.querySelector(
-    name === "activities" ? ".activities-carousel__track" : ".testimonials-carousel__track"
-  );
-  if (!track) return;
+  let activeIndex = 0;
+  let autoTimer;
 
-  const cards = track.children;
-  const total = cards.length;
-  let index = 0;
-  function readGapPx() {
-    const g = getComputedStyle(track).gap;
-    const n = parseFloat(g);
-    return Number.isFinite(n) ? n : 16;
+  // --- Build tab bar ---
+  const tabBar = document.createElement('div');
+  tabBar.className = 'activities-tab-bar';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.type = 'button';
+  prevBtn.className = 'carousel-nav__btn';
+  prevBtn.setAttribute('aria-label', 'Précédent');
+  prevBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>`;
+
+  const tabsWrap = document.createElement('div');
+  tabsWrap.className = 'activities-tab-bar__tabs';
+
+  const indicator = document.createElement('div');
+  indicator.className = 'activities-tab-bar__indicator';
+  tabsWrap.appendChild(indicator);
+
+  const tabBtns = cards.map((card, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'activities-tab-bar__tab';
+    btn.textContent = card.dataset.label || '';
+    btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+    tabsWrap.appendChild(btn);
+    return btn;
+  });
+
+  const dotsWrap = document.createElement('div');
+  dotsWrap.className = 'activities-tab-dots';
+  const dots = cards.map((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'activities-tab-dot';
+    dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  const nextBtn = document.createElement('button');
+  nextBtn.type = 'button';
+  nextBtn.className = 'carousel-nav__btn';
+  nextBtn.setAttribute('aria-label', 'Suivant');
+  nextBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>`;
+
+  tabBar.appendChild(prevBtn);
+  tabBar.appendChild(tabsWrap);
+  tabBar.appendChild(dotsWrap);
+  tabBar.appendChild(nextBtn);
+  carousel.parentElement.insertBefore(tabBar, carousel);
+
+  // --- Tab indicator position ---
+  function updateIndicator() {
+    const btn = tabBtns[activeIndex];
+    indicator.style.left = btn.offsetLeft + 'px';
+    indicator.style.width = btn.offsetWidth + 'px';
   }
 
-  function clampIndex() {
-    const visible = getVisibleCards();
-    const max = Math.max(0, total - visible);
-    if (index > max) index = max;
-    if (index < 0) index = 0;
+  // --- Dot active state ---
+  function updateDots() {
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIndex));
   }
 
-  function layoutAndRender() {
-    clampIndex();
-    const visible = getVisibleCards();
-    const containerW = root.getBoundingClientRect().width;
+  // --- Navigation ---
+  function goTo(idx) {
+    const newIdx = ((idx % N) + N) % N;
+    if (newIdx === activeIndex && cards[newIdx].classList.contains('is-active')) return;
 
-    if (name === "activities") {
-      const gap = readGapPx();
-      const cardW = visible > 0 ? (containerW - gap * (visible - 1)) / visible : containerW;
-      Array.from(cards).forEach((el) => {
-        el.style.flex = `0 0 ${cardW}px`;
-        el.style.width = `${cardW}px`;
-      });
-      const step = cardW + gap;
-      track.style.transform = `translateX(-${index * step}px)`;
-    } else {
-      const cardW = containerW;
-      Array.from(cards).forEach((el) => {
-        el.style.flex = `0 0 ${cardW}px`;
-        el.style.width = `${cardW}px`;
-      });
-      track.style.transform = `translateX(-${index * cardW}px)`;
+    const prevIdx = ((newIdx - 1) + N) % N;
+    const nextIdx = (newIdx + 1) % N;
+    const goingForward = ((newIdx - activeIndex + N) % N) <= N / 2;
+
+    // Card that fully exits the viewport (old is-prev exits left, old is-next exits right)
+    const exitingIdx = goingForward
+      ? ((activeIndex - 1) + N) % N
+      : (activeIndex + 1) % N;
+    const exitingCard = cards[exitingIdx];
+    const isExitingNewVisible = exitingIdx === prevIdx || exitingIdx === newIdx || exitingIdx === nextIdx;
+
+    // Pre-position an incoming hidden card to enter from off-screen (not from center)
+    const incomingIdx = goingForward ? nextIdx : prevIdx;
+    const incomingEl = cards[incomingIdx];
+    const wasHidden = !incomingEl.classList.contains('is-active') &&
+      !incomingEl.classList.contains('is-prev') &&
+      !incomingEl.classList.contains('is-next');
+    if (wasHidden) {
+      const sideLeft = goingForward ? '140%' : '-40%';
+      incomingEl.style.transition = 'none';
+      incomingEl.style.left = sideLeft;
+      incomingEl.style.transform = 'translate(-50%, -50%) scale(0.78)';
+      void incomingEl.offsetWidth;
+      incomingEl.style.transition = '';
+      incomingEl.style.left = '';
+      incomingEl.style.transform = '';
     }
-  }
 
-  let autoTimer = setInterval(advance, 6000);
+    // Animate exiting card off-screen in the correct direction
+    if (!isExitingNewVisible) {
+      exitingCard.style.transition = 'none';
+      exitingCard.style.left = goingForward ? '5%' : '95%';
+      exitingCard.style.transform = 'translate(-50%, -50%) scale(0.78)';
+      exitingCard.style.opacity = '0.6';
+      void exitingCard.offsetWidth;
+      exitingCard.style.transition = '';
+      exitingCard.style.left = goingForward ? '-40%' : '140%';
+      exitingCard.style.opacity = '0';
+      setTimeout(() => {
+        if (!exitingCard.classList.contains('is-active') &&
+          !exitingCard.classList.contains('is-prev') &&
+          !exitingCard.classList.contains('is-next')) {
+          exitingCard.style.transition = 'none';
+          exitingCard.style.left = '';
+          exitingCard.style.transform = '';
+          exitingCard.style.opacity = '';
+          void exitingCard.offsetWidth;
+          exitingCard.style.transition = '';
+        }
+      }, 550);
+    }
 
-  function advance() {
-    const visible = getVisibleCards();
-    const max = Math.max(0, total - visible);
-    index = index >= max ? 0 : index + 1;
-    layoutAndRender();
+    // Re-assign classes; clear any leftover inline styles on newly visible cards
+    cards.forEach(c => {
+      c.classList.remove('is-active', 'is-prev', 'is-next');
+      c.onclick = null;
+    });
+
+    [prevIdx, newIdx, nextIdx].forEach(i => {
+      const c = cards[i];
+      if (c.style.cssText) {
+        c.style.transition = 'none';
+        c.style.left = '';
+        c.style.transform = '';
+        c.style.opacity = '';
+        void c.offsetWidth;
+        c.style.transition = '';
+      }
+    });
+
+    cards[prevIdx].classList.add('is-prev');
+    cards[prevIdx].onclick = () => { goTo(activeIndex - 1); resetTimer(); };
+    cards[newIdx].classList.add('is-active');
+    cards[nextIdx].classList.add('is-next');
+    cards[nextIdx].onclick = () => { goTo(activeIndex + 1); resetTimer(); };
+
+    activeIndex = newIdx;
+    updateIndicator();
+    updateDots();
   }
 
   function resetTimer() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(advance, 6000);
+    autoTimer = setInterval(() => goTo(activeIndex + 1), 8000);
   }
 
-  document.querySelector(`[data-carousel-prev="${name}"]`)?.addEventListener("click", () => {
-    index -= 1;
-    if (index < 0) index = 0;
-    layoutAndRender();
-    resetTimer();
-  });
+  prevBtn.addEventListener('click', () => { goTo(activeIndex - 1); resetTimer(); });
+  nextBtn.addEventListener('click', () => { goTo(activeIndex + 1); resetTimer(); });
 
-  document.querySelector(`[data-carousel-next="${name}"]`)?.addEventListener("click", () => {
-    const visible = getVisibleCards();
-    const max = Math.max(0, total - visible);
-    index += 1;
-    if (index > max) index = max;
-    layoutAndRender();
-    resetTimer();
-  });
-
-  window.addEventListener("resize", () => {
-    clampIndex();
-    layoutAndRender();
-  });
-
+  // Touch swipe
   let touchStartX = 0;
-  track.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener("touchend", (e) => {
+  carousel.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', (e) => {
     const dx = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(dx) < 40) return;
-    const visible = getVisibleCards();
-    const max = Math.max(0, total - visible);
-    if (dx > 0) { index = Math.min(index + 1, max); }
-    else { index = Math.max(index - 1, 0); }
-    layoutAndRender();
+    goTo(dx > 0 ? activeIndex + 1 : activeIndex - 1);
     resetTimer();
   }, { passive: true });
 
-  layoutAndRender();
+  // Init: position indicator without animation, then enable transitions
+  requestAnimationFrame(() => {
+    indicator.style.transition = 'none';
+    goTo(0);
+    requestAnimationFrame(() => {
+      indicator.style.transition = '';
+      resetTimer();
+    });
+  });
 }
 
 /* =============================================================================
@@ -154,16 +237,23 @@ const ACTIVITY_TICKER_ITEMS = [
   "Rencontre 80 inconnus",
   "Olympiades en équipes",
   "Calvados party",
-  "DJ sets & Disco twerk",
-  "Découvertes producteurs",
-  "Partage ton sport",
-  "Running",
-  "Yoga",
-  "Dégustation produits locaux",
+  "DJ sets & Disco boom",
+  "Découvertes producteurs locaux",
+  "Partage ta passion",
+  "Running collectif",
+  "Yoga & bien-être",
   "Apprends à mixer",
   "Dodo confort",
-  "Ventre glisse",
-  "Jeux cohésion",
+  "Ventre glisse deluxe",
+  "Jeux de cohésion",
+  "Murder party géante",
+  "Tournoi de Beer Pong géant",
+  "Cours de danse",
+  "Stand de crêpes",
+  "Volleyball",
+  "Buffet à volonté",
+  "Boissons et cocktails",
+  "Stand up"
 ];
 
 function buildTripleMarquee() {
@@ -210,16 +300,26 @@ function buildTripleMarquee() {
    Galerie empilée — port de `stacking-gallery.tsx` (sans GSAP)
    ============================================================================= */
 const GALLERY_IMAGES = [
-  "/graphics/pictures_v1/DSC00753 1.png",
-  "/graphics/pictures_v1/DSC00760 1.png",
-  "/graphics/pictures_v1/DSC00801 1.png",
-  "/graphics/pictures_v1/DSC00830 1.png",
-  "/graphics/pictures_v1/IMG_9065 1.png",
-  "/graphics/pictures_v1/IMG_9142 1.png",
-  "/graphics/pictures_v1/IMG_9182 1.png",
-  "/graphics/pictures_v1/IMG_9262 1.png",
-  "/graphics/pictures_v1/DSC00697 1.png",
-  "/graphics/pictures_v1/DSC00720 1.png",
+  { src: "graphics/galery/DSC00706 1.png",  portrait: false },
+  { src: "graphics/galery/DSC00720 5.png",  portrait: true  },
+  { src: "graphics/galery/DSC00760 2.png",  portrait: true  },
+  { src: "graphics/galery/DSC00778 1.png",  portrait: true  },
+  { src: "graphics/galery/DSC00789 1.png",  portrait: false },
+  { src: "graphics/galery/DSC00799 1.png",  portrait: true  },
+  { src: "graphics/galery/DSC00801 5.png",  portrait: false },
+  { src: "graphics/galery/DSC00830 2.png",  portrait: false },
+  { src: "graphics/galery/DSC00835 1.png",  portrait: false },
+  { src: "graphics/galery/DSC00853 1.png",  portrait: true  },
+  { src: "graphics/galery/DSC00869 1.png",  portrait: true  },
+  { src: "graphics/galery/IMG_8735 1.png",  portrait: false },
+  { src: "graphics/galery/IMG_8738 1.png",  portrait: false },
+  { src: "graphics/galery/IMG_8843 1.png",  portrait: true  },
+  { src: "graphics/galery/IMG_9019 1.png",  portrait: false },
+  { src: "graphics/galery/IMG_9022 1.png",  portrait: true  },
+  { src: "graphics/galery/IMG_9036 1.png",  portrait: true  },
+  { src: "graphics/galery/IMG_9065 2.png",  portrait: false },
+  { src: "graphics/galery/IMG_9182 2.png",  portrait: false },
+  { src: "graphics/galery/IMG_9262 2.png",  portrait: false },
 ];
 
 const ROTATIONS = [-12, 10, -5, 5, -5, -2, 8, -8, 6, -10];
@@ -239,11 +339,11 @@ function initStackingGallery() {
   cardsWrap.innerHTML = "";
   const cards = [];
 
-  GALLERY_IMAGES.forEach((src, index) => {
+  GALLERY_IMAGES.forEach((item, index) => {
     const el = document.createElement("div");
-    el.className = "stack-card";
+    el.className = "stack-card" + (item.portrait ? " is-portrait" : "");
     const img = document.createElement("img");
-    img.src = src;
+    img.src = item.src;
     img.alt = `Galerie ${index + 1}`;
     el.appendChild(img);
     cardsWrap.appendChild(el);
@@ -367,13 +467,55 @@ function initReveal() {
 }
 
 /* =============================================================================
+   Menu mobile — burger toggle
+   ============================================================================= */
+function initMobileMenu() {
+  const burger = document.querySelector('.nav-bar__burger');
+  const menu = document.querySelector('.mobile-menu');
+  if (!burger || !menu) return;
+
+  burger.addEventListener('click', () => {
+    const isOpen = burger.classList.toggle('is-open');
+    menu.classList.toggle('is-open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    menu.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  menu.querySelectorAll('.mobile-menu__link').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+}
+
+/* =============================================================================
+   Hero video — autoplay explicite pour Safari
+   ============================================================================= */
+function initHeroVideo() {
+  const video = document.querySelector('.hero__video');
+  if (!video) return;
+  video.muted = true;
+  const p = video.play();
+  if (p !== undefined) {
+    p.catch(() => {
+      // Safari bloqué (Low Power Mode, etc.) → le poster reste affiché
+    });
+  }
+}
+
+/* =============================================================================
    Init page
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  initCarousel("activities");
+  initHeroVideo();
+  initActivitiesCarousel();
   initTestimonialsCarousel();
   initTrailerExpand();
   buildTripleMarquee();
   initStackingGallery();
   initReveal();
+  initMobileMenu();
 });

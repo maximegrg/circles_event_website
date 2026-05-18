@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circles - Programme 2025</title>
+  <link rel="icon" type="image/png" href="graphics/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+    rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ========== Ticker + nav ========== -->
+  <div class="masthead" id="masthead">
+    <div class="top-ticker">
+      <div class="top-ticker__track">
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Crêpes / Calendos / Calvados</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Volley / Pétanque / Molky</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Ateliers Sports / Olympiades</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">La normandie ça vous gagne</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Places trèèèèès limitées</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Crêpes / Calendos / Calvados</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Volley / Pétanque / Molky</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Ateliers Sports / Olympiades</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">La normandie ça vous gagne</div>
+        <a href="https://luma.com/sjxv5ou8" class="top-ticker__segment top-ticker__segment--gradient">JE PRENDS MES
+          BILLETS →</a>
+        <div class="top-ticker__segment top-ticker__segment--yellow">Places trèèèèès limitées</div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <nav class="nav-bar" aria-label="Navigation principale">
+        <div class="nav-bar__left">
+          <a href="/" class="nav-bar__link">Accueil</a>
+          <a href="/#infos" class="nav-bar__link">Infos importantes</a>
+          <a href="mailto:contact@circles-event.eu" class="nav-bar__link">Contact</a>
+        </div>
+        <a href="/" class="nav-bar__logo" aria-label="Circles — accueil">
+          <img src="graphics/logo_small.png" class="nav-bar__logo-img" alt="Circles" />
+        </a>
+        <div class="nav-bar__meta">
+          <span>4-7 Septembre 2026</span>
+          <span>Argentan, Normandie</span>
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <!-- ========== Hero programme ========== -->
+  <section class="prog-hero">
+    <div class="prog-hero__inner">
+      <h1 class="prog-hero__title">Programme</h1>
+      <div class="spacing-50"></div>
+      <span class="prog-hero__eyebrow">Édition 2025</span>
+      <p class="prog-hero__subtitle">Week-end du 10 au 12 octobre 2025 · Troyes</p>
+    </div>
+  </section>
+
+  <!-- ========== Notice 2026 ========== -->
+  <div class="prog-notice" role="note">
+    <div class="prog-notice__inner">
+      <span class="prog-notice__icon">🗓️</span>
+      <p class="prog-notice__text">
+        Ceci est le programme de l'édition 2025. Celui de <strong>2026</strong> sera annoncé quelques jours avant
+        l'évènement.
+        <a href="https://luma.com/sjxv5ou8" class="prog-notice__link">Prendre ma place →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ========== Filtre par jour ========== -->
+  <div class="prog-filter-wrap" id="prog-filter-wrap">
+    <div class="prog-filter" role="tablist" aria-label="Filtrer par jour">
+      <button class="prog-filter__btn is-active" data-day="vendredi" role="tab" aria-selected="true"
+        aria-controls="day-vendredi">
+        <span class="prog-filter__day">Vendredi</span>
+        <span class="prog-filter__date">10 oct.</span>
+      </button>
+      <button class="prog-filter__btn" data-day="samedi" role="tab" aria-selected="false" aria-controls="day-samedi">
+        <span class="prog-filter__day">Samedi</span>
+        <span class="prog-filter__date">11 oct.</span>
+      </button>
+      <button class="prog-filter__btn" data-day="dimanche" role="tab" aria-selected="false"
+        aria-controls="day-dimanche">
+        <span class="prog-filter__day">Dimanche</span>
+        <span class="prog-filter__date">12 oct.</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== Contenu du programme ========== -->
+  <main class="prog-main">
+
+    <!-- ===== Vendredi 10 ===== -->
+    <section class="prog-day" id="day-vendredi" data-day="vendredi" role="tabpanel">
+      <div class="prog-day__inner">
+
+        <article class="prog-event">
+          <div class="prog-event__time">18<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--animation">Animation</span>
+            </div>
+            <h3 class="prog-event__title">Accueil & premiers verres</h3>
+            <p class="prog-event__desc">Récupération du kit d'arrivée Circles, installation dans les chambres, et
+              présentation du lieu. Si tu cherches tes nouveaux copains, ils sont surement déjà en train de jouer au
+              volley, de siroter une bière en admirant le coucher de soleil (oui, à Troyes, c'est possible), ou
+              d'apprendre à mixer pour retourner la piste de danse dans quelques heures. </p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">21<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--animation">Animation</span>
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Ouverture officielle & BBQ géant</h3>
+            <p class="prog-event__desc">Il est l'heure d'ouvrir les hostilités ! Découverte des équipes, des règles du
+              week-end et lancement du killer géant (jeu fil rouge). BBQ veggie friendly géant
+              jusqu'à 22h, grillé à la flamme et accompagné de ses délicieux petits légumes.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">22<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--soiree">Soirée</span>
+            </div>
+            <h3 class="prog-event__title">Soirée d'arrivée</h3>
+            <p class="prog-event__desc">Viens remuer ton bassin sur tes mélodies préférées : Disco, Commercial, Electro,
+              Techno. Open mix pour les plus motivés.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Samedi 11 ===== -->
+    <section class="prog-day" id="day-samedi" data-day="samedi" role="tabpanel" hidden>
+      <div class="prog-day__inner">
+
+        <article class="prog-event">
+          <div class="prog-event__time">09<span class="prog-event__minutes">:45</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Petit déjeuner</h3>
+            <p class="prog-event__desc">Yeux encore collants et odeur de café : viens déguster un petit déjeuner rempli
+              de merveilles locales.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">10<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--sport">Sport</span>
+            </div>
+            <h3 class="prog-event__title">Session running</h3>
+            <p class="prog-event__desc">Un réveil en douceur (ou pas) pour ceux qui veulent transpirer dès le matin et
+              évacuer les excès de la veille.
+              Toutes les vitesses sont bienvenues.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">11<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--atelier">Atelier</span>
+            </div>
+            <h3 class="prog-event__title">3 ateliers découvertes — au choix</h3>
+            <p class="prog-event__desc">Un seul atelier par participant. À toi de choisir :</p>
+            <ul class="prog-event__list">
+              <li><strong>Kiné</strong> — Travailler sa mobilité et prévenir les blessures. Organisé par Apolline et
+                Chloé, kinés du sport.</li>
+              <li><strong>Jujitsu</strong> — Initiation aux sports de combat. Organisé par Malo et Alexandre,
+                pratiquants en club depuis 7 ans. </li>
+              <li><strong>Spikeball</strong> — Découverte des règles et initiation. Organisé par Augustin et Ghislain,
+                pratiquants en club depuis 8 ans.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">12<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Banquet général</h3>
+            <p class="prog-event__desc">Grand repas collectif jusqu'à 13h30.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">14<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--animation">Animation</span>
+              <span class="prog-tag prog-tag--sport">Sport</span>
+            </div>
+            <h3 class="prog-event__title">Olympiades en équipes 🏆</h3>
+            <p class="prog-event__desc">Le grand événement du week-end. Chaque équipe s'affronte dans des épreuves
+              improbables et accessibles à tous pour accumuler des bonus de temps et partir avec un avantage lors du
+              parcours final.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">18<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Ouverture du stand crèpes</h3>
+            <p class="prog-event__desc">Les armoricains ne nous ont pas laissé le choix : un stand de crèpes préparés
+              par un Breton pur souche. </p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">18<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--atelier">Atelier</span>
+            </div>
+            <h3 class="prog-event__title">2 ateliers découvertes du soir</h3>
+            <p class="prog-event__desc">Deux ateliers en parallèle pour finir la journée en beauté :</p>
+            <ul class="prog-event__list">
+              <li><strong>Initiation au rock</strong> - organisé par Jeanne. Avec ça, pas d'excuse pour se secouer les
+                puces à la
+                soirée de ce soir !</li>
+              <li><strong>Présentation et dégustation de champagne</strong> - organisé par une productrice locale. Parce
+                que oui,
+                Troyes n'est pas seulement le royaume de l'andouillette. On vous propose de découvrir 5 champagnes
+                produits à seulement quelques kilomètres.</li>
+            </ul>
+            <div class="prog-event__badge">📋 Inscription obligatoire</div>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">20<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Repas du soir</h3>
+            <p class="prog-event__desc">Dîner collectif jusqu'à 21h30. Viens reprendre toutes les calories que tu as
+              brulé dans la journée.
+            </p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">20<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--animation">Animation</span>
+            </div>
+            <h3 class="prog-event__title">Tournoi Beer Pong</h3>
+            <p class="prog-event__desc">Le tournoi officiel du week-end. Constitue ton équipe, plie légèrement le coude,
+              et
+              viens nous montrer tes talents de précision.</p>
+            <div class="prog-event__badge">📋 Inscription obligatoire</div>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">22<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--animation">Animation</span>
+            </div>
+            <h3 class="prog-event__title">Remise des prix & Loto Bingo</h3>
+            <p class="prog-event__desc">Les Olympiades ont désormais leur vainqueur. Mais tout le monde a une chance de
+              repartir avec
+              quelque chose grâce au Loto Bingo. Au total, 10 lots sont à gagner.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">23<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--soiree">Soirée</span>
+            </div>
+            <h3 class="prog-event__title">Turbo-Soirée</h3>
+            <p class="prog-event__desc">La grande soirée du week-end. Les meilleurs sauront admirer le lever de soleil
+              le lendemain matin.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Dimanche 12 ===== -->
+    <section class="prog-day" id="day-dimanche" data-day="dimanche" role="tabpanel" hidden>
+      <div class="prog-day__inner">
+
+        <article class="prog-event">
+          <div class="prog-event__time">10<span class="prog-event__minutes">:30</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--repas">Repas</span>
+            </div>
+            <h3 class="prog-event__title">Brunch géant</h3>
+            <p class="prog-event__desc">Le dernier grand repas tous ensemble, jusqu'à 13h. On refait le week-end, on
+              échange les numéros, on promets de se revoir.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">11<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--sport">Sport</span>
+              <span class="prog-tag prog-tag--atelier">Atelier</span>
+            </div>
+            <h3 class="prog-event__title">Initiation Yoga & Détente</h3>
+            <p class="prog-event__desc">Pour récupérer avant le retour. Corps et esprit reposés, souvenirs plein les
+              poches.</p>
+          </div>
+        </article>
+
+        <article class="prog-event">
+          <div class="prog-event__time">15<span class="prog-event__minutes">:00</span></div>
+          <div class="prog-event__card">
+            <div class="prog-event__tags">
+              <span class="prog-tag prog-tag--fin">Fin</span>
+            </div>
+            <h3 class="prog-event__title">Fin de Circles & gros calins</h3>
+            <p class="prog-event__desc">Foutue poussière dans l'oeil.. À l'année prochaine.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Activités libres ===== -->
+    <aside class="prog-aside">
+      <div class="prog-aside__inner">
+        <h2 class="prog-aside__title">Activités en accès libre tout le week-end</h2>
+        <div class="prog-aside__tags">
+          <span class="prog-free-tag">🎯 Pétanque</span>
+          <span class="prog-free-tag">🏐 Volley</span>
+          <span class="prog-free-tag">🎯 Molky</span>
+          <span class="prog-free-tag">🪨 Palets bretons</span>
+          <span class="prog-free-tag">📸 Photobooth</span>
+          <span class="prog-free-tag">🎮 Nintendo Switch</span>
+          <span class="prog-free-tag">🎳 Chamboule tout</span>
+          <span class="prog-free-tag">🃏 Jeux de société</span>
+          <span class="prog-free-tag">🏓 Spikeball</span>
+          <span class="prog-free-tag">🤹 Diabolo</span>
+          <span class="prog-free-tag">🥞 Stand crêpes</span>
+          <span class="prog-free-tag">🔫 Ventriglisse</span>
+          <span class="prog-free-tag">🎾 Spikeball</span>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ========== CTA 2026 ========== -->
+  <section class="prog-cta-section">
+    <div class="prog-cta-inner">
+      <span class="prog-cta-eyebrow">Édition 2026</span>
+      <h2 class="prog-cta-title">L'aventure continue.</h2>
+      <p class="prog-cta-sub">4 – 7 septembre 2026 · Argentan, Normandie · 80 places</p>
+      <a href="https://luma.com/sjxv5ou8" class="btn btn--hero">
+        Je prends ma place
+        <svg class="btn__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7" />
+          <polyline points="7 7 17 7 17 17" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <img src="graphics/logo_small.png" class="site-footer__logo" alt="Circles" />
+      <p class="site-footer__tagline">Le fun n'a jamais été aussi bon marché.</p>
+      <a href="https://luma.com/sjxv5ou8" class="btn btn--hero">
+        Je prends mes billets
+        <svg class="btn__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7" />
+          <polyline points="7 7 17 7 17 17" />
+        </svg>
+      </a>
+    </div>
+    <div class="site-footer__bar">
+      <div class="site-footer__links">
+        <a href="mailto:contact@circles-event.eu" class="site-footer__link">Contact</a>
+        <a href="/mentions-legales" class="site-footer__link">Mentions légales</a>
+      </div>
+      <a href="https://www.instagram.com/circles_event" class="site-footer__instagram" target="_blank" rel="noopener"
+        aria-label="Instagram @circles_event">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <p class="site-footer__legal">Circles 2026 — Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky filter: offset by masthead height
+    const masthead = document.getElementById('masthead');
+    const filterWrap = document.getElementById('prog-filter-wrap');
+    function updateFilterTop() {
+      if (masthead && filterWrap) {
+        filterWrap.style.top = masthead.offsetHeight + 'px';
+      }
+    }
+    updateFilterTop();
+    window.addEventListener('resize', updateFilterTop);
+
+    // Day filter tabs
+    const filterBtns = document.querySelectorAll('.prog-filter__btn');
+    const dayPanels = document.querySelectorAll('.prog-day');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.day;
+
+        filterBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+
+        dayPanels.forEach(panel => {
+          if (panel.dataset.day === target) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        });
+
+        // Scroll so the filter bar lands just below the sticky masthead
+        const targetY = filterWrap.getBoundingClientRect().top + window.scrollY - masthead.offsetHeight;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      });
+    });
+
+    // Ticker animation (same as main page)
+    const track = document.querySelector('.top-ticker__track');
+    if (track) {
+      // already handled by CSS animation
+    }
+  </script>
+
+</body>
+
+</html>

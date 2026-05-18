@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Circles 2</title>
+  <title>Circles - 2ème édition</title>
   <!-- Typo : Bricolage (Google Fonts) ; Satoshi n’est pas sur GF → Fontshare -->
+  <link rel="icon" type="image/png" href="graphics/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
@@ -57,8 +58,9 @@
     <header class="site-header" id="top">
       <nav class="nav-bar" aria-label="Navigation principale">
         <div class="nav-bar__left">
-          <a href="https://luma.com/sjxv5ou8" class="nav-bar__link">Billets</a>
-          <a href="#infos" class="nav-bar__link">Infos</a>
+          <a href="https://luma.com/sjxv5ou8" class="nav-bar__link">Billetterie</a>
+          <a href="programme.html" class="nav-bar__link">Programme</a>
+          <a href="#infos" class="nav-bar__link">Infos importantes</a>
           <a href="mailto:contact@circles-event.eu" class="nav-bar__link">Contact</a>
         </div>
         <a href="/" class="nav-bar__logo" aria-label="Circles — accueil">
@@ -68,15 +70,30 @@
           <span>4-7 Septembre 2026</span>
           <span>Argentan, Normandie</span>
         </div>
+        <button class="nav-bar__burger" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
       <div class="nav-gradient-placeholder" aria-hidden="true"></div>
     </header>
   </div>
 
+  <div class="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="https://luma.com/sjxv5ou8" class="mobile-menu__link">Billetterie</a>
+      <a href="programme.html" class="mobile-menu__link">Programme</a>
+      <a href="#infos" class="mobile-menu__link">Infos importantes</a>
+      <a href="mailto:contact@circles-event.eu" class="mobile-menu__link">Contact</a>
+    </nav>
+  </div>
+
   <!-- ========== Hero ========== -->
   <section class="hero" aria-label="Accueil">
     <div class="hero__media">
-      <video class="hero__video" autoplay muted loop playsinline poster="graphics/placeholder_hero.png"
+      <video class="hero__video" autoplay muted loop playsinline webkit-playsinline
+        preload="auto" poster="graphics/placeholder_hero.png"
         aria-label="Ambiance Circles">
         <source src="graphics/background.mp4" type="video/mp4" />
       </video>
@@ -85,9 +102,9 @@
     <div class="hero__overlay">
       <img src="graphics/Circles%202%20logo.png" class="hero__logo-img" alt="Circles 2" />
       <div class="hero__cta-wrap">
-        <a href="#luma" class="btn btn--hero">
-          Prendre mes billets
-          <svg class="btn__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <a href="https://luma.com/sjxv5ou8" class="btn btn--hero">
+          Je m'inscris
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="7" y1="17" x2="17" y2="7" />
             <polyline points="7 7 17 7 17 17" />
@@ -99,28 +116,17 @@
 
   <!-- ========== Pitch + contrôles carrousel ========== -->
   <section class="section section--pitch" aria-labelledby="pitch-title">
+    <div class="spacing-adaptive-100"></div>
     <div class="pitch__inner">
       <h2 id="pitch-title" class="pitch__title" data-reveal>
-        La micro-aventure qui rassemble 80 inconnus dans un lieu perdu.
+        3 jours pour élargir tes cercles au fin fond de la france
       </h2>
       <p class="pitch__text" data-reveal data-reveal-delay="130">
-        Viens découvrir ou partager tes passions avec des ateliers découvertes, transpirer sur des activités sportives,
-        découvrir des produits locaux délicieux, et créer des liens avec tes nouveaux potes dans des activités
-        surprises. Garde juste assez d'énergie pour la turbo-soirée qui attend tout le monde le dernier soir.
+        Viens apprendre à danser le rock, transpirer sur des épreuves d'olympiades approximatives,
+        déguster la douce saveur d'un camembert local, et créer des liens avec 80 amis d'amis dans des activités
+        surprises. Garde juste assez d'énergie pour la turbo-soirée qui attend tout le monde le dernier soir. Cerise sur
+        le reblochon : tout est organisé, tu as juste à prendre tes billets.
       </p>
-      <div class="carousel-nav carousel-nav--pitch" aria-label="Navigation carrousel activités" data-reveal
-        data-reveal-delay="240">
-        <button type="button" class="carousel-nav__btn" data-carousel-prev="activities" aria-label="Précédent"><svg
-            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="15 18 9 12 15 6" />
-          </svg></button>
-        <button type="button" class="carousel-nav__btn" data-carousel-next="activities" aria-label="Suivant"><svg
-            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="9 18 15 12 9 6" />
-          </svg></button>
-      </div>
 
     </div>
   </section>
@@ -128,61 +134,66 @@
   <!-- ========== Carrousel activités ========== -->
   <section class="section section--carousel-activities" aria-label="Activités">
     <div class="activities-carousel" data-carousel="activities" data-reveal>
-      <div class="activities-carousel__track">
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_atelier.png" width="400" height="280"
-              alt="Ateliers initiations" />
-          </div>
-          <p class="activity-card__caption">Des ateliers initiations pour découvrir des loisirs &amp; des sports</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_olympiades.png" width="400" height="280"
-              alt="Olympiades" />
-          </div>
-          <p class="activity-card__caption">Des olympiades géantes par équipes pour trouvez tes compagnons du WE</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_produits.png" width="400" height="280"
-              alt="Dégustations locales" />
-          </div>
-          <p class="activity-card__caption">Des dégustations de produits locaux à t'en faire frémir les papilles</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_soirees.png" width="400" height="280"
-              alt="Soirée DJ" />
-          </div>
-          <p class="activity-card__caption">Une turbo soirée avec DJ improvisés (Ça peut être toi)</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_ventriglisse.png" width="400" height="280"
-              alt="Ventriglisse" />
-          </div>
-          <p class="activity-card__caption">Des animations de forains et un ventriglisse géant</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_surprises.png" width="400" height="280"
-              alt="Surprises" />
-          </div>
-          <p class="activity-card__caption">Un maaax de cadeau et de surprises, tout au long du WE</p>
-        </article>
-        <article class="activity-card">
-          <div class="activity-card__img-wrap">
-            <img class="activity-card__img" src="graphics/carousel_crepes.png" width="400" height="280"
-              alt="Beer Pong & crêpes" />
-          </div>
-          <p class="activity-card__caption">Tournoi de Beer Pong géant, open bar crêpes, tournoi de fléchettes et bien
-            d'autres</p>
-        </article>
-      </div>
+      <article class="activity-card" data-label="Ateliers">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_atelier.png" width="400" height="280"
+            alt="Ateliers initiations" />
+        </div>
+        <p class="activity-card__caption">Des ateliers initiations pour découvrir des loisirs &amp; des sports. Danse,
+          arts, sports de combats, dessins de caricatures... Tu trouveras forcément chaussure à ton pied.</p>
+      </article>
+      <article class="activity-card" data-label="Olympiades">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_olympiades.png" width="400" height="280"
+            alt="Olympiades" />
+        </div>
+        <p class="activity-card__caption">Des olympiades géantes par équipes pour devenir copains comme cochon, et jeu
+          du killer grandeur nature. La triche
+          est encouragée.</p>
+      </article>
+      <article class="activity-card" data-label="Dégustations">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_produits.png" width="400" height="280"
+            alt="Dégustations locales" />
+        </div>
+        <p class="activity-card__caption">Des dégustations de produits locaux à t'en faire frémir les papilles !</p>
+      </article>
+      <article class="activity-card" data-label="Soirées DJ">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_soirees.png" width="400" height="280"
+            alt="Soirée DJ" />
+        </div>
+        <p class="activity-card__caption">Une turbo soirée avec DJ improvisés et boule disco (Et si tu as toujours
+          voulu apprendre à mixer, c'est peut être l'heure de briller !)</p>
+      </article>
+      <article class="activity-card" data-label="Animations">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_ventriglisse.png" width="400" height="280"
+            alt="Ventriglisse" />
+        </div>
+        <p class="activity-card__caption">Des animations de forains et un ventriglisse géant, qu'il pleuve ou qu'il
+          vente.</p>
+      </article>
+      <article class="activity-card" data-label="Surprises">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_surprises.png" width="400" height="280"
+            alt="Surprises" />
+        </div>
+        <p class="activity-card__caption">Un maaax de cadeau et de surprises, tout au long du week-end.</p>
+      </article>
+      <article class="activity-card" data-label="Apéros">
+        <div class="activity-card__img-wrap">
+          <img class="activity-card__img" src="graphics/carousel_crepes.png" width="400" height="280"
+            alt="Beer Pong & crêpes" />
+        </div>
+        <p class="activity-card__caption">Tournoi de Beer Pong géant, open bar crêpes, tournoi de fléchettes et bien
+          d'autres.</p>
+      </article>
     </div>
-    <a href="https://luma.com/sjxv5ou8" class="btn btn--hero pitch__cta">
-      Je m'auto-traquenarde
+    <div class="spacing-adaptive-100">
+    </div>
+    <a href="programme.html" class="btn btn--hero pitch__cta">
+      Découvrir le programme
     </a>
   </section>
 
@@ -204,52 +215,17 @@
       </div>
     </div>
     <div class="spacing-100"></div>
-  </section>
-
-  <!-- ========== Témoignages ========== -->
-  <section class="section section--testimonials" aria-labelledby="testimonials-title">
-    <div class="testimonials__grid">
-      <div class="testimonials__col testimonials__col--content">
-        <h2 id="testimonials-title" class="testimonials__title" data-reveal>Ils ne s’en sont jamais remis.</h2>
-        <div class="carousel-nav carousel-nav--testimonials" aria-label="Navigation témoignages" data-reveal
-          data-reveal-delay="120">
-          <button type="button" class="carousel-nav__btn" data-carousel-prev="testimonials" aria-label="Précédent"><svg
-              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="15 18 9 12 15 6" />
-            </svg></button>
-          <button type="button" class="carousel-nav__btn" data-carousel-next="testimonials" aria-label="Suivant"><svg
-              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="9 18 15 12 9 6" />
-            </svg></button>
-        </div>
-        <div class="testimonials-carousel" data-carousel="testimonials" data-reveal data-reveal-delay="200">
-          <div class="testimonials-carousel__track">
-            <blockquote class="testimonial-card">
-              <p class="testimonial-card__quote">Merci 1000 fois pour ce week end dingue ! C’était génial, merci pour
-                cette organisation de folie !</p>
-              <footer class="testimonial-card__author">Corentin</footer>
-            </blockquote>
-            <blockquote class="testimonial-card">
-              <p class="testimonial-card__quote">Les repas étaient trops bons, les activités au top ! Merci mille fois
-                !!! C'était trop bien ❤️</p>
-              <footer class="testimonial-card__author">Apolline</footer>
-            </blockquote>
-            <blockquote class="testimonial-card">
-              <p class="testimonial-card__quote">Merci 1000 fois pour ce week end dingue ! C’était génial, merci pour
-                cette organisation de folie ! +1 pour la dégustation de produit local, l’intervenant était génial !</p>
-              <footer class="testimonial-card__author">Andrea</footer>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-      <div class="testimonials__col testimonials__col--visual">
-        <div class="testimonials__photo-wrap" data-reveal data-reveal-delay="150">
-          <img class="testimonials__photo" src="graphics/carousel_surprises.png" width="520" height="680" alt="" />
-        </div>
-      </div>
+    <div class="hero__cta-wrap" style="text-align: center;">
+      <a href="https://luma.com/sjxv5ou8" class="btn btn--hero">
+        Je m'inscris
+        <svg class="btn__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7" />
+          <polyline points="7 7 17 7 17 17" />
+        </svg>
+      </a>
     </div>
+    <div class="spacing-100"></div>
   </section>
 
   <!-- ========== Infos (#infos) ========== -->
@@ -271,7 +247,8 @@
         <div class="infos__row" data-reveal data-reveal-delay="80">
           <dt class="infos__q">EN BREF</dt>
           <dd class="infos__a">​📆 Du vendredi 4 septembre 18h au lundi 7 septembre 10h. <br> 🎟️ Aux 80 premiers
-            inscrits, pour 149e tout compris (Logement en chambres, activités, miam miam et boissons).<br> 📍Près
+            inscrits, pour un prix accessible qui comprend le logement en chambres, les activités, le miam miam et les
+            boissons.<br> 📍Près
             d'Argentan, en Normandie. Accessible en TER. Possibilité de se garer sur place. Le lieu sera communiqué aux
             inscrits.</dd>
         </div>
@@ -302,6 +279,52 @@
             garantit pas un confort parfait, mais au moins un toit sur ta tête !</dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <!-- ========== Témoignages ========== -->
+  <section class="section section--testimonials" aria-labelledby="testimonials-title">
+    <div class="testimonials__grid">
+      <div class="testimonials__col testimonials__col--content">
+        <h2 id="testimonials-title" class="testimonials__title" data-reveal>Ils ne s’en sont jamais remis.</h2>
+        <div class="carousel-nav carousel-nav--testimonials" aria-label="Navigation témoignages" data-reveal
+          data-reveal-delay="120">
+          <button type="button" class="carousel-nav__btn" data-carousel-prev="testimonials" aria-label="Précédent"><svg
+              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg></button>
+          <button type="button" class="carousel-nav__btn" data-carousel-next="testimonials" aria-label="Suivant"><svg
+              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg></button>
+        </div>
+        <div class="testimonials-carousel" data-carousel="testimonials" data-reveal data-reveal-delay="200">
+          <div class="testimonials-carousel__track">
+            <blockquote class="testimonial-card">
+              <p class="testimonial-card__quote">Merci 1000 fois pour ce week end dingue ! C’était génial, merci pour
+                cette organisation de folie !</p>
+              <footer class="testimonial-card__author">Corentin, participant de l'édition 2025</footer>
+            </blockquote>
+            <blockquote class="testimonial-card">
+              <p class="testimonial-card__quote">Les repas étaient trops bons, les activités au top ! Merci mille fois
+                !!! C'était trop bien ❤️</p>
+              <footer class="testimonial-card__author">Apolline, participante de l'édition 2025</footer>
+            </blockquote>
+            <blockquote class="testimonial-card">
+              <p class="testimonial-card__quote"> +1 pour la dégustation de produit local, l’intervenant était génial !
+              </p>
+              <footer class="testimonial-card__author">Andrea, participante de l'édition 2025</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="testimonials__col testimonials__col--visual">
+        <div class="testimonials__photo-wrap" data-reveal data-reveal-delay="150">
+          <img class="testimonials__photo" src="graphics/carousel_surprises.png" width="520" height="680" alt="" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -339,6 +362,15 @@
         <a href="mailto:contact@circles-event.eu" class="site-footer__link">Contact</a>
         <a href="/mentions-legales" class="site-footer__link">Mentions légales</a>
       </div>
+      <a href="https://www.instagram.com/circles_event" class="site-footer__instagram" target="_blank" rel="noopener"
+        aria-label="Instagram @circles_event">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
       <p class="site-footer__legal">Circles 2026 — Tous droits réservés</p>
     </div>
   </footer>
